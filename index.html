@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizApp</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+
+    <!--Bootstrap file-->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body onload="init()">
+
+
+
+    <div class="maincontainer">
+
+
+
+        <div class="background">
+            <div class="title border-style">
+                <h1>Quiz by Manuel</h1>
+            </div>
+            <div class="quiz-container">
+
+                <div class="left">
+                    <div class="progressbar border-style">
+                        <div id="progressbarrightanswer" class="progressbarrightanswer">
+                            <p id="progressbarrightanswer-txt" class="progressbar-txt">33%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="middle">
+                    <div class="head">
+                        <img id="header-img" src="img/mountain.jpg">
+
+                    </div>
+
+
+                    <div id="questionBody" class="question-container">
+                        <div class="question-title border-style">
+                            <h5 id="answer_0">Frage</h5>
+                        </div>
+                        <div class="question-container-bottom">
+                            <div class="question-container-left">
+                                <div class="answer border-style" onclick="answer('answer_1')">
+
+                                    <div id="answer_1" class="card-body">
+
+                                    </div>
+                                </div>
+
+                                <div class="answer border-style" onclick="answer('answer_3')">
+                                    <div id="answer_3" class="card-body">
+                                        Antwort
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="question-container-right">
+
+                                <div class="answer border-style" onclick="answer('answer_2')">
+                                    <div id="answer_2" class="card-body">
+                                        Antwort
+                                    </div>
+                                </div>
+
+                                <div class="answer border-style" onclick="answer('answer_4')">
+                                    <div id="answer_4" class="card-body">
+                                        Antwort
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-footer border-style">
+                            <span class="question-footer-text">
+                                <b id="currentQuestion">1</b> von <b id="totalquestions">5</b> Fragen
+                            </span>
+                            <button onclick="nextQuestion()" id="next-question" class="btn btn-primary" disabled>Nächste
+                                Frage</button>
+                        </div>
+                    </div>
+
+                    <div id="endScreen" class="question-container" style="display: none">
+                        <div class="question-title endscreen-title border-style">
+                            <h5 id="answer_0">Quiz beendet!</h5>
+                        </div>
+
+                        <div class="question-footer border-style">
+                            <span class="question-footer-text">
+                                Du hast <b id="right-Of-Questions">xxx</b> von <b id="amount-Of-Questions">xxx</b>
+                                richtig beantwortet
+                            </span>
+                            <button onclick="restartGame()" class="btn btn-primary">Erneut
+                                spielen</button>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="right">
+                    <div class="progressbar border-style">
+                        <div id="progressbar" class="progressbarblue border-style">
+                            <p id="progressbar-txt" class="progressbar-txt">25%</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                <!--
+                <div class="card quizcard">
+
+
+
+
+                   <div id="endScreen" class="card quizcard" style="display: none;">
+                        <div class="text-center final-headline">Quiz beendet!
+                        </div>
+
+
+
+                        <div class="text-center">Du hast <b id="right-Of-Questions">xxx</b> von <b
+                                id="amount-Of-Questions">xxx</b> richtig beantwortet</div>
+                        <div class="button-row">
+                            <button onclick="restartGame()" class="btn btn-primary">Erneut
+                                spielen</button>
+                        </div>
+                    </div>
+
+
+                     <div id="questionBody" class="card-body">
+                        <h5 id="answer_0" class="card-title">Frage</h5>
+
+                        <div class="card quiz-answer-card mb-2" onclick="answer('answer_1')">
+                            <div id="answer_1" class="card-body">
+                                Antwort
+                            </div>
+                        </div>
+
+                        <div class="card quiz-answer-card mb-2" onclick="answer('answer_2')">
+                            <div id="answer_2" class="card-body">
+                                Antwort
+                            </div>
+                        </div>
+
+                        <div class="card quiz-answer-card mb-2" onclick="answer('answer_3')">
+                            <div id="answer_3" class="card-body">
+                                Antwort
+                            </div>
+                        </div>
+
+                        <div class="card quiz-answer-card mb-2" onclick="answer('answer_4')">
+                            <div id="answer_4" class="card-body">
+                                Antwort
+                            </div>
+                        </div>
+
+                    <div class="question-footer">
+                        <span>
+                            <b id="currentQuestion">1</b> von <b id="totalquestions">5</b> Fragen
+                        </span>
+
+                        <button onclick="nextQuestion()" id="next-question" class="btn btn-primary" disabled>Nächste
+                            Frage</button>
+                    </div>-->
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
